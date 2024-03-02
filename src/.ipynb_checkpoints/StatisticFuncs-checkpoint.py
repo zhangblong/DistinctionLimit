@@ -52,7 +52,9 @@ class StatisticClass(object):
 #========================== distinction ====================================================#
     def vsParaGen(self, exposure, i):
         # generate the parameters with some prepared materials
-        # mu: mean, sig: standard derivation
+        # output: mu: mean, sig: standard derivation
+        # ldd: matrix F, HMat: matrix H, varMat: matrix V
+        # Fdelta: F.delta, delta: thetaPrime-muList, muList: theta0 or theta1
         thetaPrime = self._thetaPrimeList[i]
         lddTemp, varGauTerm = self._vsTempMatList[i]
         
@@ -65,10 +67,6 @@ class StatisticClass(object):
         HMat = np.block([[np.zeros((2,2)), np.zeros((2,nb))],[np.zeros((nb,2)), np.linalg.inv(G3)]])
         
         lddInv = np.linalg.inv(ldd)
-        # 20230913: the following code to produce varMatOneHalf is more reasonable but lack of numerical stabilities, thus it needs directly computabtion
-        # varMatInv = np.linalg.inv(varMat)
-        # varMatOneHalfInv = matOneHalfGen(varMatInv)
-        # varMatOneHalf = np.linalg.inv(varMatOneHalfInv)
         varMatOneHalf = np.sqrt(exposure)*matOneHalfGen(varMat)
         Fdelta1 = ldd@np.append(thetaPrime-muList1, np.zeros(nb))
         Fdelta2 = ldd@np.append(thetaPrime-muList2, np.zeros(nb))
@@ -96,7 +94,6 @@ class StatisticClass(object):
         b0 = self._Spectrum._b0Flat*b0Level
         
         s1, s2, b, sigmaTheta = RWIMP, RNuDiff, RNuSM, NuUncs
-        #lddTemp, varGauTerm = vsMatGen(thetaPrime, s1, s2, b, sigmaTheta)
         self._vsTempMatList = [vsMatGen(self._thetaPrimeList[i], s1, s2, b, sigmaTheta, b0) for i in range(2)]
         return 
 
