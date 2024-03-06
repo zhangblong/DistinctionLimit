@@ -36,7 +36,6 @@ def vsContourDatGen(massList, dat):
     intDatBoundsList = list(map(lambda x: [x[0].min(),x[0].max()],intDatList))
     intFuncList = list(map(lambda x: interpolate.interp1d(x[0],x[1]),intDatList))
     sigRange = np.linspace(-48.,-38,1000+1)
-    #print(intDatBoundsList)
     def intFuncBounds(intFunc, var, bounds):
         if var>bounds[1]:
             return 0.
@@ -75,12 +74,6 @@ def MakeLimitPlot_DMeConstant(ax, xmin,xmax,ymax,ymin,\
                      alph=0.5,lfs=35,tfs=25):
     
     limitsPath = "../data/WIMPLimits/DM-e constant/"
-#     AllLimits = loadtxt(limitsPath+"PandaX-4T"+" DM-e constant.txt")
-#     ax.fill_between(1e3*AllLimits[:,0], AllLimits[:,1],edgecolor=None,y2=ymax,facecolor=facecolor,alpha=alph,zorder=0)
-#     ax.plot(1e3*AllLimits[:,0], AllLimits[:,1],color=edgecolor_collected,linewidth=3,alpha=alph,zorder=0.01)
-#     colorList = ['c','orange',"navy",'#4ff09d','darkgreen','crimson',[0.67, 0.31, 0.32],[0.5, 0.0, 0.13],'purple']
-#     experimentLimits = ['DarkSide-50','PandaX-II','XENON-1T','PandaX-4T']
-#     labelList = [r"{\bf DarkSide-50}", r"{\bf PandaX-II}", r"{\bf XENON-1T}", r"{\bf PandaX-4T}"]
     colorList = ['c',"navy",'#4ff09d']
     experimentLimits = ['DarkSide-50','XENON-1T','PandaX-4T']
     labelList = [r"{\bf DarkSide-50}", r"{\bf XENON-1T}", r"{\bf PandaX-4T}"]
@@ -98,13 +91,10 @@ def MakeLimitPlot_DMeConstant(ax, xmin,xmax,ymax,ymin,\
 
 
 def findroot(dat):
-    # 20240220 x should be mono-increasing
     x, y = dat[0], dat[1]
     transitionIndices = np.where(np.diff(np.sign(y))!=0)[0]
     if len(transitionIndices)==2:
         res = [subFindroot(0.,y[i:i+2],x[i:i+2]) for i in transitionIndices]
-#         print('res: ',[interpolate.interp1d(x,y)(d) for d in res])
-#         print('res2: ', [x[i:i+2] for i in transitionIndices])
         return res
     else:
         print('error in findroot')
@@ -119,7 +109,6 @@ def datGet(resList, mDM):
     print(DistinctionSigmaLog)
     DistinctionSigmaLog2 = findroot([vsSigma0LogList,y-1.])
     print(DistinctionSigmaLog2)
-    #print(y)
     
     DistinctionExpoLog = np.interp(np.array(DistinctionSigmaLog), vsSigma0LogList[::-1], vsExposureLogList[::-1])
     print('Sigma: ', DistinctionSigmaLog, ' ', 10**DistinctionSigmaLog)
