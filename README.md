@@ -3,7 +3,7 @@
 
 # Distinction
 This is the codes for reproducing results from our paper arXiv:[24xx.xxxxx]. You can simply run the notebooks. Most computations can be done within 15 minutes.
-<img align="right" src="plots/png/DMNSISMvsDMNP.png" height="350">
+<img align="right" src="plots/png/DMNSISMvsDMNP.png" height="300">
 
 We organize four files to content different materials:
 * [`src/`] - Contains functions used in producing  results
@@ -20,7 +20,7 @@ All classes and functions we use to derive results in our paper are maily includ
 * [`U1PlotFuncs.py`] - Plotting functions
 * [`StatisticFuncs.py`] - Main classes and functions
 Here, we also provide a code diagram for better understanding:
-<img align="center" src="Code Diagram 2.png" height="350">
+<img align="center" src="Code Diagram.png" height="200">
 <img align="center" src="Code Diagram 2.png" height="350">
 
 Bases on materials above, we offer several notebooks to obstain figures in our paper:
