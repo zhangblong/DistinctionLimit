@@ -33,7 +33,7 @@ Bases on materials above, we offer several notebooks to obstain figures in our p
 * [`MCPlot.ipynb`] - Figure 7
 ---
 # Attention
-Our work is based on the reference arXiv: 2304.13665 and the repository [`zhangblong AsymptoticAnalysisAndNeutrinoFog`](https://github.com/zhangblong/AsymptoticAnalysisAndNeutrinoFog). And some codes are from [`Ciaran NeutrinoFog`](https://github.com/cajohare/NeutrinoFog/).
+Our work is based on the reference arXiv: 2304.13665 and the repository [`zhangblong AsymptoticAnalysisAndNeutrinoFog`](https://github.com/zhangblong/AsymptoticAnalysisAndNeutrinoFog). And some codes are from [`Ciaran NeutrinoFog`](https://github.com/cajohare/NeutrinoFog/). The codes used to obtain DM-e scattering event rates are from [`T.T. Yu ` QEdark](https://github.com/tientienyu/QEdark).
 
 # Requirements
 * [`CMasher`](https://cmasher.readthedocs.io/)
