@@ -1,5 +1,6 @@
 [![arXiv](https://img.shields.io/badge/arXiv-24xx.xxxxx-B31B1B.svg)](https://arxiv.org/abs/24xx.xxxxx)
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://hub.ovh2.mybinder.org/user/zhangblong-distinctionlimit-vodgpat3/lab)
 
 # Distinction
 This is the codes for reproducing results from our paper arXiv:[24xx.xxxxx]. You can simply run the notebooks. Most computations can be done within 15 minutes.
