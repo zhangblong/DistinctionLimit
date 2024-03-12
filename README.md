@@ -1,9 +1,9 @@
-[![arXiv](https://img.shields.io/badge/arXiv-24xx.xxxxx-B31B1B.svg)](https://arxiv.org/abs/24xx.xxxxx)
+[![arXiv](https://img.shields.io/badge/arXiv-2403.05819-B31B1B.svg)](https://arxiv.org/abs/2403.05819)
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://hub.ovh2.mybinder.org/user/zhangblong-distinctionlimit-vodgpat3/lab)
 
 # Distinction
-This is the codes for reproducing results from our paper arXiv:[24xx.xxxxx]. You can simply run the notebooks. Most computations can be done within 15 minutes.
+This is the codes for reproducing results from our paper arXiv:[2403.05819]. You can simply run the notebooks. Most computations can be done within 15 minutes.
 <img align="right" src="plots/png/DMNSISMvsDMNP.png" height="300">
 
 We organize four files to content different materials:
@@ -44,12 +44,13 @@ Our work is based on the reference arXiv: 2304.13665 and the repository [`zhangb
 
 If you need any further assistance or have any questions, contact me at zhangblong1036@foxmail.com. And if you do use anything here please cite the paper, [Bing-Long Zhang](https://arxiv.org/abs/2304.13665)
 ```
-@article{Tang:2023xub,
-    title={Asymptotic Analysis on Binned Likelihood and Neutrino Floor},
-    author={Jian Tang and Bing-Long Zhang},
-    year={2023},
-    eprint={2304.13665},
-    archivePrefix={arXiv},
-    primaryClass={hep-ph}
+@article{Tang:2024prl,
+    author = "Tang, Jian and Zhang, Bing-Long",
+    title = "{Dark matter, CE$\nu$NS and neutrino new physics scrutinized by a statistical method in Xenon-based experiments}",
+    eprint = "2403.05819",
+    archivePrefix = "arXiv",
+    primaryClass = "hep-ph",
+    month = "3",
+    year = "2024"
 }
 ```
