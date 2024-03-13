@@ -2,7 +2,7 @@
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://hub.ovh2.mybinder.org/user/zhangblong-distinctionlimit-vodgpat3/lab)
 
-# Distinction
+# Dark matter, CEνNS and neutrino new physics scrutinized by a statistical method in Xenon-based experiments
 This is the codes for reproducing results from our paper arXiv:[2403.05819]. You can simply run the notebooks. Most computations can be done within 15 minutes.
 <img align="right" src="plots/png/DMNSISMvsDMNP.png" height="300">
 
