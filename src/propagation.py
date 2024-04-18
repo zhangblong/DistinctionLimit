@@ -14,7 +14,6 @@ import numpy as np
 from scipy import interpolate
 #==============================================================================#
 # Neutrino Data
-print(parent_dir)
 neutrinoFluxDir = os.path.join(parent_dir, 'data', 'neutrinos', 'normalised')
 neutrinoDisDir = os.path.join(parent_dir,'data','solar')
 neutrinoNames = np.array(["pp", "pep", "hep", "7Be1", "7Be2", "8B", "13N", "15O", "17F"])
