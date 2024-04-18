@@ -1,8 +1,7 @@
-#===========================NeutrinoFogFuncs.py===================================#
-# Created by Bing-Long Zhang, 2023
+#===========================U1Funcs.py===================================#
+# Created by Bing-Long Zhang, 2024
 
-# Contains functions for performing calculations of the neutrino fog and floor, etc.
-# All functions below are developed by modifying Ciaran's Python code.
+# Contains functions for performing calculations of the neutrino and DM spectra
 
 #==============================================================================#
 # import
@@ -39,6 +38,7 @@ from numpy import pi
 from WIMPFuncs import U1BinnedWIMPRate, MeanInverseSpeed_SHM
 from LabFuncs import JulianDay, LabVelocity
 from propagation import propagation
+import os
 
 def EarthVelocityFunc(JD):
     return np.linalg.norm(LabVelocity(JD, Loc=Params.GranSasso, v_LSR=233.0)[0])
@@ -95,7 +95,7 @@ def GetNuFluxesCorrect(E_th,Nuc=Params.F19):
             E_nu_all[ii,0] = NuMaxEnergy[s]*1e-3
             Flux_all[ii,0] = NuFlux[s]
         else:
-            data = np.loadtxt(nufile_dir+'normalised/'+nuname[s]+nufile_root,delimiter=',')
+            data = np.loadtxt(os.path.join(nufile_dir,'normalised',nuname[s]+nufile_root),delimiter=',')
             E_nu_all[ii,:],Flux_all[ii,:] = data[:,0]*1e-3,data[:,1]*1e3
             Flux_all[ii,:] = Flux_all[ii,:]*NuFlux[s]
 

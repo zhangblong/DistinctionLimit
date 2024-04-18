@@ -6,15 +6,17 @@
 #==============================================================================#
 # import
 import sys, os
-current_dir = os.path.dirname(os.path.abspath(__file__))
-relative_path = os.path.join(current_dir, 'src')
-sys.path.append(relative_path)
+# current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+# relative_path = os.path.join(parent_dir, 'src')
+# sys.path.append(relative_path)
 import numpy as np
 from scipy import interpolate
 #==============================================================================#
 # Neutrino Data
-neutrinoFluxDir = os.path.join(current_dir, 'data', 'neutrinos', 'normalised')
-neutrinoDisDir = os.path.join(current_dir,'data','solar')
+print(parent_dir)
+neutrinoFluxDir = os.path.join(parent_dir, 'data', 'neutrinos', 'normalised')
+neutrinoDisDir = os.path.join(parent_dir,'data','solar')
 neutrinoNames = np.array(["pp", "pep", "hep", "7Be1", "7Be2", "8B", "13N", "15O", "17F"])
 neutrinoFluxesNorFactors = np.array([5.98e10,1.44e8,7.98e3,4.93e8,4.50e9,5.16e6,2.78e8,2.05e8,5.29e6]) # MeV
 neutrinoFluxesUnc = np.array([0.006, 0.01, 0.3,0.06, 0.06, 0.02, 0.15 ,0.17 ,0.2])

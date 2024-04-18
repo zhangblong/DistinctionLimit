@@ -18,9 +18,11 @@ import matplotlib.patheffects as pe
 from labellines import labelLine, labelLines
 from scipy import interpolate
 from StatisticFuncs import subFindroot
+import os
 
-pltdir = '../plots/'
-pltdir_png = pltdir+'plots_png/'
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+pltdir = os.path.join(parent_dir, 'plots')
+pltdir_png = os.path.join(pltdir, 'png')
 def MySaveFig(fig,pltname,pngsave=True):
     fig.savefig(pltdir+pltname+'.pdf',bbox_inches='tight')
     if pngsave:
@@ -55,13 +57,14 @@ def MakeLimitPlot_DMNSI(ax, xmin,xmax,ymax,ymin,\
                      facecolor=[0.0, 0.62, 0.38],edgecolor='darkgreen',edgecolor_collected='darkgray',\
                      alph=0.5,lfs=35,tfs=25):
     
+    limitsPath = os.path.join(parent_dir, "data","WIMPLimits","SI")
     colorList = ["navy",'#4ff09d',[0.5, 0.0, 0.13],'c','r','orange','purple']
     experimentLimits = ['XENONnT','PandaX4TDMLimits','LZ2022','XENON1T8BLimits','PandaX4T8BLimits']
     labelList = [r"{\bf XENON-nT}", r"{\bf PandaX-4T}", r"{\bf LZ-2022}", \
                  r"{\bf XENON-1T} $^8B$", r"{\bf PandaX-4T} $^8B$"]
     lines = []
     for i in range(len(experimentLimits)):
-        dat = np.loadtxt("../data/WIMPLimits/SI/"+experimentLimits[i]+".txt")
+        dat = np.loadtxt(os.path.join(limitsPath,experimentLimits[i]+".txt"))
         l1 = ax.plot(dat[:,0], dat[:,1],color=colorList[i],linewidth=3,label=labelList[i])
         lines.extend(l1)
 
@@ -73,13 +76,13 @@ def MakeLimitPlot_DMeConstant(ax, xmin,xmax,ymax,ymin,\
                      facecolor=[0.0, 0.62, 0.38],edgecolor='darkgreen',edgecolor_collected='darkgray',\
                      alph=0.5,lfs=35,tfs=25):
     
-    limitsPath = "../data/WIMPLimits/DM-e constant/"
+    limitsPath = os.path.join(parent_dir, "data","WIMPLimits","DM-e constant")
     colorList = ['c',"navy",'#4ff09d']
     experimentLimits = ['DarkSide-50','XENON-1T','PandaX-4T']
     labelList = [r"{\bf DarkSide-50}", r"{\bf XENON-1T}", r"{\bf PandaX-4T}"]
     lines = []
     for i in range(len(experimentLimits)):
-        dat = np.loadtxt(limitsPath+experimentLimits[i]+" DM-e constant.txt")
+        dat = np.loadtxt(os.path.join(limitsPath,experimentLimits[i]+" DM-e constant.txt"))
         l1 = ax.plot(1e3*dat[:,0], dat[:,1],color=colorList[i],linewidth=3,label=labelList[i])
         lines.extend(l1)
         

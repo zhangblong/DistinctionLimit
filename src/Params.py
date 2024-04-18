@@ -3,11 +3,13 @@ from numpy import array, sqrt, pi, exp, interp, loadtxt, zeros, shape, ones
 from numpy import logspace, linspace, log10
 from scipy.special import erf
 import matplotlib.cm as cm
+import os
 
-data_dir = '../data/'
-recoil_dir = '../data/recoils/'
-nufile_dir = "../data/neutrinos/"
-mylimit_dir = '../data/WIMPlimits/mylimits/'
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+data_dir = os.path.join(parent_dir, 'data')
+recoil_dir = os.path.join(parent_dir, 'data', 'recoils')
+nufile_dir = os.path.join(parent_dir, 'data', 'neutrinos')
+mylimit_dir = os.path.join(parent_dir, 'data','mylimits')
 
 # Constants
 m_p = 0.9315*1e6
