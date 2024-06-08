@@ -110,14 +110,17 @@ def datGet(resList, mDM):
             vsExposureLogList, y, DistinctionSigmaLog = resDat
     
     print(DistinctionSigmaLog)
-    DistinctionSigmaLog2 = findroot([vsSigma0LogList,y-1.])
-    print(DistinctionSigmaLog2)
+    # DistinctionSigmaLog2 = findroot([vsSigma0LogList,y-1.])
+    # print(DistinctionSigmaLog2)
     
     DistinctionExpoLog = np.interp(np.array(DistinctionSigmaLog), vsSigma0LogList[::-1], vsExposureLogList[::-1])
-    print('Sigma: ', DistinctionSigmaLog, ' ', 10**DistinctionSigmaLog)
-    print('Exposure: ', DistinctionExpoLog, ' ', 10**DistinctionExpoLog)
+    print('Sigma: ', DistinctionSigmaLog, '(log), ', 10**DistinctionSigmaLog)
+    print('Exposure: ', DistinctionExpoLog, '(log),  ', 10**DistinctionExpoLog)
     maxLabel = np.argmax(y)
-    print('max n: ', 10**vsSigma0LogList[maxLabel], ' ', y[maxLabel], ' ', 10**vsExposureLogList[maxLabel])
+    print('max n: ', 10**vsSigma0LogList[maxLabel], ' ratio: ', y[maxLabel], \
+          'distinction exposure: ', 10**vsExposureLogList[maxLabel], 'DM discovery exposure ', \
+           10**vsExposureLogList[maxLabel]/y[maxLabel])
+
 
 def maxCheck(massList, dat):
     indexList = np.array([True if len(d[1])>3 else False for d in dat])

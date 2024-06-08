@@ -14,6 +14,8 @@ from WIMPFuncs import C_SI
 from Params import *
 import matplotlib.pyplot as plt
 from scipy import stats, interpolate
+from joblib import Parallel, delayed
+from tqdm import tqdm
 #============================== log-likelihood ============================================#
 @jit(nopython=True)
 def globalFunc(datObs, RNuSM, RWIMP, muDM, RNuDiff, muNP, nuiList, b0, Uncs, exposure):
@@ -532,14 +534,16 @@ def myMul(mDM, paraGenClass, FogGenClass, paraList):
                     vsSigma0LogList, vsExposureLogList, y, DistinctionSigmaLog]
     return [NPDiscoverySigmaLog, DistinctionDat]
 
-def resGen(mDMList, paraGenClass, FogGenClass, paraList):
+def resGen(mDMList, paraGenClass, FogGenClass, paraList, n_jobs=20):
     time_start = time.perf_counter()
-    pool = multiprocessing.Pool(4)
-    multiple_results = [pool.apply_async(\
-            myMul, [mDMList[i],paraGenClass, FogGenClass, paraList]) for i in range(len(mDMList))]
-    pool.close()
-    pool.join()
-    res1= [res.get() for res in multiple_results]
+
+    # Define the function to be parallelized
+    def parallel_function(mDM, paraGenClass, FogGenClass, paraList):
+        return myMul(mDM, paraGenClass, FogGenClass, paraList)
+
+    # Use joblib to parallelize the computation and visualize the progress with tqdm
+    res1 = Parallel(n_jobs=n_jobs)(delayed(parallel_function)(mDM, paraGenClass, FogGenClass, paraList) for mDM in tqdm(mDMList))
+
     time_end = time.perf_counter()
     print("Time costed: {0} s.".format(time_end-time_start))
     
@@ -547,6 +551,22 @@ def resGen(mDMList, paraGenClass, FogGenClass, paraList):
     mDMList = mDMList[resLabel]
     res1 = [item for item in res1 if isinstance(item, list)]
     return [mDMList, res1]
+
+# def resGen(mDMList, paraGenClass, FogGenClass, paraList):
+#     time_start = time.perf_counter()
+#     pool = multiprocessing.Pool(4)
+#     multiple_results = [pool.apply_async(\
+#             myMul, [mDMList[i],paraGenClass, FogGenClass, paraList]) for i in range(len(mDMList))]
+#     pool.close()
+#     pool.join()
+#     res1= [res.get() for res in multiple_results]
+#     time_end = time.perf_counter()
+#     print("Time costed: {0} s.".format(time_end-time_start))
+    
+#     resLabel = np.where(np.array([1 if isinstance(item, list) else 0 for item in res1])==1)
+#     mDMList = mDMList[resLabel]
+#     res1 = [item for item in res1 if isinstance(item, list)]
+#     return [mDMList, res1]
     
 #=========================================================================#
 #========================== spectras =====================================#
